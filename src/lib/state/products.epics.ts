@@ -26,4 +26,4 @@ const loadProductsDataEpic = action$ => {
 };
 
 // combine the modules epics into one
-export const contactsEpics  = combineEpics(loadProductsDataEpic);
+export const productsEpics  = combineEpics(loadProductsDataEpic);
