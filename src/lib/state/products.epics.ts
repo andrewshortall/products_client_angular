@@ -2,7 +2,7 @@ import { HttpService } from '@libs/midgard-angular/src/lib/modules/http/http.ser
 import { ofType } from 'redux-observable';
 import { switchMap, catchError, map } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { LOAD_DATA_CONTACTS, loadContactsDataCommit, loadContactsDataFail } from '@libs/contacts/src/lib/state/contacts.actions';
+import { LOAD_DATA_PRODUCTS, loadProductsDataCommit, loadProductsDataFail } from '@libs/products/src/lib/state/products.actions';
 
 const httpService = new HttpService();
 
@@ -12,13 +12,13 @@ const httpService = new HttpService();
  */
 const loadProductsDataEpic = action$ => {
   return action$.pipe(
-    ofType(LOAD_DATA_CONTACTS),
+    ofType(LOAD_DATA_PRODUCTS),
     switchMap((action: any) => {
       return httpService.makeRequest('get', 'https://dev.toladata.io/api/workflowlevel1/').pipe(
         // If successful, dispatch success action with result
-        map(res => loadContactsDataCommit(res.data)),
+        map(res => loadProductsDataCommit(res.data)),
         // If request fails, dispatch failed action
-        catchError((error) => of(loadContactsDataFail(error)))
+        catchError((error) => of(loadProductsDataFail(error)))
       );
     })
   );
