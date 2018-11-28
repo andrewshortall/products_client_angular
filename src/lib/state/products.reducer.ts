@@ -8,7 +8,7 @@ import {
 } from '@libs/documents/src/lib/state/documents.actions';
 
 const initialState: any = {
-  products: [],
+  data: [],
   dataLoaded: false
 };
 
