@@ -2,17 +2,17 @@ import { HttpService } from '@libs/midgard-angular/src/lib/modules/http/http.ser
 import { ofType } from 'redux-observable';
 import { switchMap, catchError, map } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { LOAD_DATA_PRODUCTS, loadProductsDataCommit, loadProductsDataFail } from '@libs/products/src/lib/state/products.actions';
+import { LOAD_ALL_PRODUCTS, loadProductsDataCommit, loadProductsDataFail } from '@libs/products/src/lib/state/products.actions';
 
 const httpService = new HttpService();
 
 /**
- * @description this is here to handle asynchronous actions and will be triggered when LOAD_DATA_CONTACTS action is dispatched
+ * @description this is here to handle asynchronous actions and will be triggered when LOAD_DATA_PRODUCTS action is dispatched
  * @param {Observable} action$ - the current action
  */
 const loadProductsDataEpic = action$ => {
   return action$.pipe(
-    ofType(LOAD_DATA_PRODUCTS),
+    ofType(LOAD_ALL_PRODUCTS),
     switchMap((action: any) => {
       return httpService.makeRequest('get', 'https://dev.toladata.io/api/workflowlevel1/').pipe(
         // If successful, dispatch success action with result
