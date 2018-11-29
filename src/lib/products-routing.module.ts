@@ -3,7 +3,6 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { AuthGuard } from '@libs/midgard-angular/src/lib/modules/oauth/auth.guard';
 import { ProductsComponent } from '@libs/products/src/lib/products.component';
-import { WorkflowLevel2DetailComponent } from '@libs/midgard-angular/src/lib/pages/workflow-level2/detail/workflow-level2-detail.component';
 import { ProductDetailComponent } from '@libs/products/src/lib/pages/product-detail/product-detail.component';
 
 const productsRoutes: Routes = [
