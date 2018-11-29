@@ -1,9 +1,14 @@
-<mg-crud-list
-  [loadAction]="'LOAD_ALL_PRODUCTS'"
-  [tableOptions]="tableOptions"
-  [selector]="selector"
-  [deleteAction]="'DELETE_PRODUCT'"
-  [addButtonText]="'Add Product'"
-  [detailsRoute]="'/products/details/'"
->
-</mg-crud-list>
+<h2>Products</h2>
+<mat-tab-group class="products-tabs">
+  <mat-tab label="List">
+    <mg-crud-list
+      [loadAction]="'LOAD_ALL_PRODUCTS'"
+      [tableOptions]="tableOptions"
+      [selector]="selector"
+      [deleteAction]="'DELETE_PRODUCT'"
+      [addButtonText]="'Add Product'"
+      [detailsRoute]="'/products/details/'"
+    >
+    </mg-crud-list>
+  </mat-tab>
+</mat-tab-group>

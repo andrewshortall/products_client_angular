@@ -4,7 +4,7 @@ import { ProductsRoutingModule } from '@libs/products/src/lib/products-routing.m
 import { MidgardCrudModule } from '@libs/midgard-angular/src/lib/modules/crud/crud.module';
 import { MidgardSharedTranslationModule } from '@libs/midgard-angular/src/lib/modules/translation/translation.shared.module';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
-import { MatButtonModule, MatIconModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatTabsModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -12,6 +12,7 @@ import { MatButtonModule, MatIconModule } from '@angular/material';
     MidgardSharedTranslationModule,
     ProductsRoutingModule,
     MatButtonModule,
+    MatTabsModule,
     MatIconModule
   ],
   declarations: [ProductsComponent, ProductDetailComponent],

@@ -10,3 +10,13 @@ export const getAllProducts = reselect.createSelector(
     }
   }
 );
+
+/**
+ * selector that selects one product from the products reducer
+ * @param {number} id - id of the document
+ * @returns {MemoizedSelector<any, any>}
+ */
+export const selectProduct = (id: number) => reselect.createSelector(getProducts, (products) => {
+  return products.data.find( product => product.id.toString() === id.toString());
+});
+
