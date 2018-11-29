@@ -3,9 +3,6 @@ import {
   UPDATE_PRODUCT_COMMIT
 } from '@libs/products/src/lib/state/products.actions';
 import { addAll, deleteOne, upsertOne } from '@libs/midgard-angular/src/lib/state/reducer.utils';
-import {
-  SAVE_BLOB_URL
-} from '@libs/documents/src/lib/state/documents.actions';
 
 const initialState: any = {
   data: [],
@@ -24,8 +21,6 @@ export function productsReducer(state = initialState, action) {
       return upsertOne(state, action);
     case DELETE_PRODUCT_COMMIT:
       return deleteOne(state, action);
-    case SAVE_BLOB_URL:
-      return upsertOne(state, action);
     default:
       return state;
   }
