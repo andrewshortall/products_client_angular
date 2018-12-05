@@ -19,7 +19,7 @@ import { Action } from '@libs/midgard-angular/src/lib/state/action.type';
 const httpService = new HttpService();
 
 /**
- * @description this is here to handle asynchronous actions and will be triggered when LOAD_DATA_PRODUCTS action is dispatched
+ * this is here to handle asynchronous actions and will be triggered when LOAD_DATA_PRODUCTS action is dispatched
  * @param {Observable} action$ - the current action
  */
 const loadAllProductsEpic = action$ => {
