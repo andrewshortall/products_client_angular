@@ -6,7 +6,10 @@ import { addAll, deleteOne, upsertOne } from '@libs/midgard-angular/src/lib/stat
 
 const initialState: any = {
   data: [],
-  dataLoaded: false
+  loaded: false,
+  created: false,
+  updated: false,
+  deleted: false
 };
 
 export function productsReducer(state = initialState, action) {
