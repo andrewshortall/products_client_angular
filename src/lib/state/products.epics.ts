@@ -64,7 +64,7 @@ const createProductEpic = action$ => {
     switchMap((action: Action) => {
       return httpService.makeRequest('post', `${environment.API_URL}/products/products/`, action.data, true).pipe(
         // If successful, dispatch success action with result
-        map((res: Action) => createProductCommit(res.data, action.nested)),
+        map((res: Action) => createProductCommit(res.data, action.index)),
         // If request fails, dispatch failed action
         catchError((error) => of(createProductFail(error)))
       );
@@ -80,7 +80,9 @@ const updateProductEpic = action$ => {
   return action$.pipe(
     reduxObservable.ofType(UPDATE_PRODUCT),
     switchMap((action: Action) => {
-      return httpService.makeRequest('put', `${environment.API_URL}/products/products/${action.data.id}/`, action.data, true).pipe(
+      const payload = {...action.data};
+      delete payload['id']; // remove id from payload because we already send it in the url
+      return httpService.makeRequest('put', `${environment.API_URL}/products/products/${action.data.id}/`, payload, true).pipe(
         // If successful, dispatch success action with result
         map((res: Action) => updateProductCommit(res.data, action.nested)),
         // If request fails, dispatch failed action

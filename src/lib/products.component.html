@@ -1,15 +1,14 @@
-<h2>Products</h2>
-<mat-tab-group class="products-tabs">
-  <mat-tab label="List">
-    <mg-crud-list
-      [loadAction]="'LOAD_ALL_PRODUCTS'"
-      [tableOptions]="tableOptions"
-      [selector]="selector"
-      [deleteAction]="'DELETE_PRODUCT'"
-      [deleteMessage]="'The product has been deleted'"
-      [addButtonText]="'Add Product'"
-      [detailsRoute]="'/products/details/'"
-    >
-    </mg-crud-list>
-  </mat-tab>
-</mat-tab-group>
+<mg-crud-list
+  [loadAction]="'LOAD_ALL_PRODUCTS'"
+  [title]="'Most recent products'"
+  [tableOptions]="tableOptions"
+  [cardItemOptions]="cardItemOptions"
+  [selector]="selector"
+  [deleteAction]="'DELETE_PRODUCT'"
+  [updateAction]="'UPDATE_PRODUCT'"
+  [createAction]="'CREATE_PRODUCT'"
+  [deleteMessage]="'The product has been deleted'"
+  [addButtonText]="'Add Product'"
+  [detailsRoute]="'/products/details/'"
+>
+</mg-crud-list>

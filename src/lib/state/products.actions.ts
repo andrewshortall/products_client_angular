@@ -72,11 +72,11 @@ export function createProduct(data) {
   };
 }
 
-export function createProductCommit(data, nested) {
+export function createProductCommit(data, index?: number) {
   return {
     type: CREATE_PRODUCT_COMMIT,
     data,
-    nested
+    index
   };
 }
 

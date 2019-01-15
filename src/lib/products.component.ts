@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { getAllWorkflowLevel1s } from '@libs/midgard-angular/src/lib/state/workflow-level1/workflow-level1.selectors';
 import { getAllProducts } from '@libs/products/src/lib/state/products.selectors';
+import { Store } from '@libs/midgard-angular/src/lib/modules/store/store';
+import { setTopBarOptions } from '@libs/midgard-angular/src/lib/state/top-bar/top-bar.actions';
 
 @Component({
   selector: 'lib-products',
@@ -9,18 +10,103 @@ import { getAllProducts } from '@libs/products/src/lib/state/products.selectors'
 })
 export class ProductsComponent implements OnInit {
   public tableOptions;
+  public cardItemOptions;
+  public topBarOptions = [
+    {
+      label: 'All',
+      value: 'all'
+    },
+    {
+      label: 'Active',
+      value: 'active'
+    },
+    {
+      label: 'Disabled',
+      value: 'disabled'
+    }
+  ];
   public graphQlQuery;
   public selector;
 
 
-  constructor() {
+  constructor(private store: Store<any>) {
   }
 
   ngOnInit() {
     this.selector = getAllProducts;
+    this.store.dispatch(setTopBarOptions(this.topBarOptions));
+    this.defineCardItemOptions();
     this.defineTableOptions();
   }
 
+  /**
+   * defines options for card item components
+   */
+  private defineCardItemOptions() {
+    this.cardItemOptions = {
+      title: {
+        prop: 'name',
+        placeholder: 'Product Name'
+      },
+      subText: {
+        prop: 'make',
+        placeholder: 'Product Brand'
+      },
+      subText2: {
+        prop: 'description',
+        placeholder: 'Product Description'
+      },
+      caption: {
+        prop: 'reference_id',
+        placeholder: 'Ref.'
+      },
+      link: {
+        prop: 'style',
+        placeholder: 'Style'
+      },
+      picture: 'dummy/url',
+      belowMenuPrimaryAction: {
+        label: 'New Product',
+        value: 'new'
+      },
+      secondaryAction: {
+        label: 'Publish',
+        value: 'publish'
+      },
+      otherActions: [
+        {
+          label: '•••',
+          value: '•••'
+        },
+        {
+          label: 'Delete',
+          value: 'delete'
+        },
+        {
+          label: 'Share',
+          value: 'share'
+        }
+      ],
+      belowMenuOtherActions: [
+        {
+          label: '•••',
+          value: '•••'
+        },
+        {
+          label: 'Delete',
+          value: 'delete'
+        },
+        {
+          label: 'Share',
+          value: 'share'
+        }
+      ]
+    };
+  }
+
+  /**
+   * defines options for the table component
+   */
   private defineTableOptions() {
     this.tableOptions = {
       columns: [
