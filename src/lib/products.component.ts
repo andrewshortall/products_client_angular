@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { getAllProducts } from '@libs/products/src/lib/state/products.selectors';
 import { Store } from '@libs/midgard-angular/src/lib/modules/store/store';
 import { setTopBarOptions } from '@libs/midgard-angular/src/lib/state/top-bar/top-bar.actions';
+import {CardItemOptions} from 'freyja-ui';
 
 @Component({
   selector: 'lib-products',
@@ -10,7 +11,7 @@ import { setTopBarOptions } from '@libs/midgard-angular/src/lib/state/top-bar/to
 })
 export class ProductsComponent implements OnInit {
   public tableOptions;
-  public cardItemOptions;
+  public cardItemOptions: CardItemOptions;
   public topBarOptions = [
     {
       label: 'All',
@@ -46,25 +47,50 @@ export class ProductsComponent implements OnInit {
     this.cardItemOptions = {
       title: {
         prop: 'name',
-        placeholder: 'Product Name'
+        label: 'Product Name'
       },
       subText: {
         prop: 'make',
-        placeholder: 'Product Brand'
+        label: 'Product Brand'
       },
       subText2: {
-        prop: 'description',
-        placeholder: 'Product Description'
+        prop: 'type',
+        label: 'Product Type'
       },
       caption: {
         prop: 'reference_id',
-        placeholder: 'Ref.'
+        label: 'Ref.'
       },
       link: {
         prop: 'style',
-        placeholder: 'Style'
+        label: 'Style'
       },
-      picture: 'dummy/url',
+      picture: {
+        prop: 'picture',
+        label: 'Picture'
+      },
+      date1: {
+        prop: 'create_date',
+        label: 'Created at'
+      },
+      date2: {
+        prop: 'edit_date',
+        label: 'Updated at'
+      },
+      details: [
+        {
+          prop: 'model',
+          label: 'Model'
+        },
+        {
+          prop: 'status',
+          label: 'Status'
+        },
+      ],
+      description: {
+        prop: 'description',
+        label: 'Description'
+      },
       belowMenuPrimaryAction: {
         label: 'New Product',
         value: 'new'
@@ -111,7 +137,7 @@ export class ProductsComponent implements OnInit {
     this.tableOptions = {
       columns: [
         {name: 'Name', prop: 'name', flex: 2, sortable: true, filtering: true},
-        {name: 'Manufacturer', prop: 'make', flex: 2, sortable: true, filtering: true},
+        {name: 'Manu.', prop: 'make', flex: 2, sortable: true, filtering: true},
         {name: 'Model', prop: 'model', flex: 2, sortable: true, filtering: false},
         {name: 'Style', prop: 'style', flex: 2, sortable: true, filtering: false},
         {name: 'Description', prop: 'description', flex: 2, sortable: true, filtering: false},

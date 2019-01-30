@@ -1,13 +1,13 @@
-<button routerLink="/products" mat-button="" class="back-button"><mat-icon>arrow_left</mat-icon> Back to list</button>
 <mg-crud-detail [selector]="selector"
                 [loadAction]="'LOAD_ONE_PRODUCT'"
                 [updateAction]="'UPDATE_PRODUCT'"
                 [createAction]="'CREATE_PRODUCT'"
                 [addButtonText]="'Add Product'"
                 [editButtonText]="'Edit Product'"
+                [backButtonText]="'Back to list'"
                 [formFields]="formFields"
                 [titleProp]="'name'"
                 [createMessage]="'The product has been created'"
                 [updateMessage]="'The product has been updated'"
-                [listRoute]="'/products/'">
+                [listRoute]="'/products'">
 </mg-crud-detail>
