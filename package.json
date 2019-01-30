@@ -11,7 +11,8 @@
   "dependencies": {
     "midgard-core": "0.0.16",
     "redux-observable": "^1.0.0",
-    "rxjs": "6.3.2"
+    "rxjs": "6.3.2",
+    "freyja-ui": "0.0.17"
   },
   "devDependencies": {
     "@compodoc/compodoc": "^1.1.7"
