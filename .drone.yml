@@ -41,4 +41,4 @@ pipeline:
     secrets: [NPM_USER, NPM_EMAIL, SSH_KEY, SSH_PUBLIC_KEY]
     when:
       event: [push, tag]
-      status: [success]
+      status: [success] 
