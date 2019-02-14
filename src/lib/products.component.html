@@ -10,5 +10,7 @@
   [deleteMessage]="'The product has been deleted'"
   [addButtonText]="'Add Product'"
   [detailsRoute]="'/products/details/'"
+  (cardItemActionClicked)="handleCardItemActionClicked($event)"
+  (cardItemEdited)="handleCardItemEdited($event)"
 >
 </mg-crud-list>

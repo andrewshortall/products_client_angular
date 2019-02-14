@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { getAllProducts } from '@libs/products/src/lib/state/products.selectors';
 import { Store } from '@libs/midgard-angular/src/lib/modules/store/store';
 import { setTopBarOptions } from '@libs/midgard-angular/src/lib/state/top-bar/top-bar.actions';
 import {CardItemOptions} from 'freyja-ui';
+import {ListComponent} from '../../../midgard-angular/src/lib/modules/crud/list/list.component';
 
 @Component({
   selector: 'lib-products',
@@ -12,6 +13,7 @@ import {CardItemOptions} from 'freyja-ui';
 export class ProductsComponent implements OnInit {
   public tableOptions;
   public cardItemOptions: CardItemOptions;
+  @ViewChild('crudList') crudList: ListComponent;
   public topBarOptions = [
     {
       label: 'All',
@@ -27,14 +29,13 @@ export class ProductsComponent implements OnInit {
     }
   ];
   public graphQlQuery;
-  public selector;
+  public selector = getAllProducts;
 
 
   constructor(private store: Store<any>) {
   }
 
   ngOnInit() {
-    this.selector = getAllProducts;
     this.store.dispatch(setTopBarOptions(this.topBarOptions));
     this.defineCardItemOptions();
     this.defineTableOptions();
@@ -146,6 +147,53 @@ export class ProductsComponent implements OnInit {
         {name: '', cellTemplate: 'actions', actions: ['delete']},
       ]
     };
+  }
+
+  /**
+   * function that listens if an action from the card-item component has been triggered
+   * @param {string} actionData - an object that contains the type of the action that has been triggered and the selected item
+   */
+  handleCardItemActionClicked(actionData: {actionType: string, item: any}) {
+    switch (actionData.actionType) {
+      case 'new':
+        const itemIndex = this.crudList.rows.indexOf(actionData.item) + 1;
+        // generate a placeholder item
+        const placeholderItem = {};
+        Object.keys(this.cardItemOptions).forEach( cardItemOptionKey => {
+          placeholderItem[this.cardItemOptions[cardItemOptionKey].prop] = this.cardItemOptions[cardItemOptionKey].label;
+        });
+        this.cardItemOptions.details.forEach( detailItem => {
+          placeholderItem[detailItem.prop] = detailItem.label;
+        });
+        return this.crudList.createItem(placeholderItem, itemIndex);
+      case 'delete':
+        return this.crudList.deleteItem(item);
+      default:
+        return false;
+    }
+  }
+
+  /**
+   * function that is triggered when the card item is edited
+   * @param {string} editedData - an object that contains the edited object and the current card item data
+   */
+  handleCardItemEdited(editedData: {editedObj: string, item: any}) {
+    let editedProperty;
+    if (editedData.editedObj.index !== undefined) {
+      editedProperty = this.cardItemOptions[editedData.editedObj.element][editedData.editedObj.index].prop;
+    } else {
+      editedProperty = this.cardItemOptions[editedData.editedObj.element].prop;
+    }
+    const newItem: any = {};
+    newItem.id = editedData.item.id;
+    newItem.name = editedData.item.name;
+    if (editedData.editedObj.value && editedData.editedObj.value !== '') {
+      newItem[editedProperty] = editedObj.value;
+      this.store.dispatch({
+        type: this.updateAction,
+        data: newItem
+      });
+    }
   }
 }
 
