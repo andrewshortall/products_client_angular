@@ -177,7 +177,7 @@ export class ProductsComponent implements OnInit {
    * function that is triggered when the card item is edited
    * @param {string} editedData - an object that contains the edited object and the current card item data
    */
-  handleCardItemEdited(editedData: {editedObj: string, item: any}) {
+  handleCardItemEdited(editedData: {editedObj: any, item: any}) {
     let editedProperty;
     if (editedData.editedObj.index !== undefined) {
       editedProperty = this.cardItemOptions[editedData.editedObj.element][editedData.editedObj.index].prop;
