@@ -44,7 +44,7 @@ const loadOneProductEpic = action$ => {
   return action$.pipe(
     reduxObservable.ofType(LOAD_ONE_PRODUCT),
     switchMap((action: Action) => {
-      return httpService.makeRequest('get', `${environment.API_URL}/products/products/${action.id}/`, true).pipe(
+      return httpService.makeRequest('get', `${environment.API_URL}/products/products/${action.id}/`, {}, true).pipe(
         // If successful, dispatch success action with result
         map((res: Action) => loadOneProductCommit(res.data)),
         // If request fails, dispatch failed action

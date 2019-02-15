@@ -13,7 +13,7 @@ import {ListComponent} from '../../../midgard-angular/src/lib/modules/crud/list/
 export class ProductsComponent implements OnInit {
   public tableOptions;
   public cardItemOptions: CardItemOptions;
-  @ViewChild('crudList') crudList: ListComponent;
+  @ViewChild('crud') crud: ListComponent;
   public topBarOptions = [
     {
       label: 'All',
@@ -67,8 +67,8 @@ export class ProductsComponent implements OnInit {
         label: 'Style'
       },
       picture: {
-        prop: 'picture',
-        label: 'Picture'
+        image: 'picture',
+        thumbnail: 'picture'
       },
       date1: {
         prop: 'create_date',
@@ -156,7 +156,7 @@ export class ProductsComponent implements OnInit {
   handleCardItemActionClicked(actionData: {actionType: string, item: any}) {
     switch (actionData.actionType) {
       case 'new':
-        const itemIndex = this.crudList.rows.indexOf(actionData.item) + 1;
+        const itemIndex = this.crud.rows.indexOf(actionData.item) + 1;
         // generate a placeholder item
         const placeholderItem = {};
         Object.keys(this.cardItemOptions).forEach( cardItemOptionKey => {
@@ -165,9 +165,9 @@ export class ProductsComponent implements OnInit {
         this.cardItemOptions.details.forEach( detailItem => {
           placeholderItem[detailItem.prop] = detailItem.label;
         });
-        return this.crudList.createItem(placeholderItem, itemIndex);
+        return this.crud.createItem(placeholderItem, itemIndex);
       case 'delete':
-        return this.crudList.deleteItem(item);
+        return this.crud.deleteItem(actionData.item);
       default:
         return false;
     }
@@ -175,24 +175,16 @@ export class ProductsComponent implements OnInit {
 
   /**
    * function that is triggered when the card item is edited
-   * @param {string} editedData - an object that contains the edited object and the current card item data
+   * @param {string} editedField - an object that contains the edited property and the edited value of the field object and the current card item data
    */
-  handleCardItemEdited(editedData: {editedObj: any, item: any}) {
-    let editedProperty;
-    if (editedData.editedObj.index !== undefined) {
-      editedProperty = this.cardItemOptions[editedData.editedObj.element][editedData.editedObj.index].prop;
-    } else {
-      editedProperty = this.cardItemOptions[editedData.editedObj.element].prop;
-    }
+  handleCardItemEdited(editedField: {value: any, property, itemData: any}) {
+    const {value, property, itemData} = editedField;
     const newItem: any = {};
-    newItem.id = editedData.item.id;
-    newItem.name = editedData.item.name;
-    if (editedData.editedObj.value && editedData.editedObj.value !== '') {
-      newItem[editedProperty] = editedObj.value;
-      this.store.dispatch({
-        type: this.updateAction,
-        data: newItem
-      });
+    newItem.id = itemData.id;
+    newItem.name = itemData.name;
+    if (value && value !== '') {
+      newItem[property] = value;
+      this.crud.updateItem(newItem);
     }
   }
 }

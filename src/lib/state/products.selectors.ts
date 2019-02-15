@@ -6,6 +6,13 @@ export const getAllProducts = reselect.createSelector(
   getProducts,
   (products) => {
     if (products) {
+      products.data.map(product => {
+        const random = (Math.random() * 10); // TODO: to get a random picture just for demo and should be removed
+        if (random > 5 && product.title !== 'Product Name') {
+          product.picture = 'assets/img/product-example.jpeg';
+        }
+        return product;
+      });
       return products;
     }
   }
