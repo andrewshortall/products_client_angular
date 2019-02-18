@@ -154,13 +154,21 @@ export class ProductsComponent implements OnInit {
    * @param {string} actionData - an object that contains the type of the action that has been triggered and the selected item
    */
   handleCardItemActionClicked(actionData: {actionType: string, item: any}) {
+    let itemIndex;
     switch (actionData.actionType) {
       case 'new':
-        const itemIndex = this.crud.rows.indexOf(actionData.item) + 1;
+        if (actionData.item) {
+          itemIndex = this.crud.rows.indexOf(actionData.item) + 1;
+        } else {
+          itemIndex = 1;
+        }
         // generate a placeholder item
         const placeholderItem = {};
         Object.keys(this.cardItemOptions).forEach( cardItemOptionKey => {
-          placeholderItem[this.cardItemOptions[cardItemOptionKey].prop] = this.cardItemOptions[cardItemOptionKey].label;
+          console.log(this.cardItemOptions[cardItemOptionKey].prop);
+          if (!(this.cardItemOptions[cardItemOptionKey].prop === 'create_date' || this.cardItemOptions[cardItemOptionKey].prop === 'edit_date')) {
+            placeholderItem[this.cardItemOptions[cardItemOptionKey].prop] = this.cardItemOptions[cardItemOptionKey].label;
+          }
         });
         this.cardItemOptions.details.forEach( detailItem => {
           placeholderItem[detailItem.prop] = detailItem.label;

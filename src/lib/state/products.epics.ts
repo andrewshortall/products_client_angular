@@ -100,7 +100,7 @@ const deleteProductEpic = action$ => {
   return action$.pipe(
     reduxObservable.ofType(DELETE_PRODUCT),
     switchMap((action: Action) => {
-      return httpService.makeRequest('delete', `${environment.API_URL}/products/products/${action.data.id}/`, true).pipe(
+      return httpService.makeRequest('delete', `${environment.API_URL}/products/products/${action.data.id}/`, {}, true).pipe(
         // If successful, dispatch success action with result
         map(res => deleteProductCommit(action.data, action.nested)),
         // If request fails, dispatch failed action
