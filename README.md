@@ -1,4 +1,3 @@
-Gokhan
 
 # Products
 
