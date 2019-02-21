@@ -165,8 +165,8 @@ export class ProductsComponent implements OnInit {
         // generate a placeholder item
         const placeholderItem = {};
         Object.keys(this.cardItemOptions).forEach( cardItemOptionKey => {
-          console.log(this.cardItemOptions[cardItemOptionKey].prop);
-          if (!(this.cardItemOptions[cardItemOptionKey].prop === 'create_date' || this.cardItemOptions[cardItemOptionKey].prop === 'edit_date')) {
+          if (!(this.cardItemOptions[cardItemOptionKey].prop === 'create_date' ||
+            this.cardItemOptions[cardItemOptionKey].prop === 'edit_date')) {
             placeholderItem[this.cardItemOptions[cardItemOptionKey].prop] = this.cardItemOptions[cardItemOptionKey].label;
           }
         });
