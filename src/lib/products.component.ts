@@ -3,7 +3,7 @@ import { getAllProducts } from '@libs/products/src/lib/state/products.selectors'
 import { Store } from '@libs/midgard-angular/src/lib/modules/store/store';
 import { setTopBarOptions } from '@libs/midgard-angular/src/lib/state/top-bar/top-bar.actions';
 import {CardItemOptions} from 'freyja-ui';
-import {ListComponent} from '../../../midgard-angular/src/lib/modules/crud/list/list.component';
+import {CrudComponent} from '../../../midgard-angular/src/lib/modules/crud/crud.component';
 
 @Component({
   selector: 'lib-products',
@@ -13,7 +13,7 @@ import {ListComponent} from '../../../midgard-angular/src/lib/modules/crud/list/
 export class ProductsComponent implements OnInit {
   public tableOptions;
   public cardItemOptions: CardItemOptions;
-  @ViewChild('crud') crud: ListComponent;
+  @ViewChild('crud') crud: CrudComponent;
   public topBarOptions = [
     {
       label: 'All',
