@@ -7,10 +7,6 @@ export const getAllProducts = reselect.createSelector(
   (products) => {
     if (products) {
       products.data.map(product => {
-        // this is just for demo and should be removed
-        if (product.title !== 'Product Name' && product.model !== 'Model') {
-          product.picture = 'assets/img/product-example.jpeg';
-        }
         return product;
       });
       return products;
