@@ -1,8 +1,8 @@
 import {
   CREATE_PRODUCT_COMMIT, DELETE_PRODUCT_COMMIT, LOAD_ALL_PRODUCTS_COMMIT, LOAD_ONE_PRODUCT_COMMIT,
   UPDATE_PRODUCT_COMMIT
-} from '@libs/products/src/lib/state/products.actions';
-import { addAll, deleteOne, upsertOne } from '@libs/midgard-angular/src/lib/modules/store/reducer.utils';
+} from '@clients/products/src/lib/state/products.actions';
+import { addAll, deleteOne, upsertOne } from '@src/midgard/modules/store/reducer.utils';
 
 const initialState: any = {
   data: [],

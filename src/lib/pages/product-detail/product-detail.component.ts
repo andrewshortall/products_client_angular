@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { getAllProducts } from '@libs/products/src/lib/state/products.selectors';
+import { getAllProducts } from '@clients/products/src/lib/state/products.selectors';
 
 @Component({
   selector: 'lib-product-detail',

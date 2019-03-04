@@ -1,4 +1,4 @@
-import { HttpService } from '@libs/midgard-angular/src/lib/modules/http/http.service';
+import { HttpService } from '@src/midgard/modules/http/http.service';
 import { ofType } from 'redux-observable';
 import { switchMap, catchError, map } from 'rxjs/operators';
 import { of } from 'rxjs';
@@ -6,15 +6,15 @@ import {
   createProductCommit, createProductFail, deleteProductCommit, deleteProductFail,
   LOAD_ALL_PRODUCTS, loadOneProductFail, loadProductsCommit,
   updateProductCommit, updateProductFail, loadProductsFail
-} from '@libs/products/src/lib/state/products.actions';
+} from '@clients/products/src/lib/state/products.actions';
 import { environment } from '@env/environment';
 import {
   CREATE_PRODUCT,
   DELETE_PRODUCT, LOAD_ONE_PRODUCT, loadOneProductCommit,
   UPDATE_PRODUCT
-} from '@libs/products/src/lib/state/products.actions';
-import { reduxObservable } from '@libs/midgard-angular/src/lib/modules/store';
-import { Action } from '@libs/midgard-angular/src/lib/state/action.type';
+} from '@clients/products/src/lib/state/products.actions';
+import { reduxObservable } from '@src/midgard/modules/store';
+import { Action } from '@src/midgard/state/action.type';
 
 const httpService = new HttpService();
 

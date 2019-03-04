@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { AuthGuard } from '@libs/midgard-angular/src/lib/modules/oauth/auth.guard';
-import { ProductsComponent } from '@libs/products/src/lib/products.component';
-import { ProductDetailComponent } from '@libs/products/src/lib/pages/product-detail/product-detail.component';
+import { AuthGuard } from '@src/midgard/modules/oauth/auth.guard';
+import { ProductsComponent } from '@clients/products/src/lib/products.component';
+import { ProductDetailComponent } from '@clients/products/src/lib/pages/product-detail/product-detail.component';
 
 const productsRoutes: Routes = [
   { path: '', component: ProductsComponent, canActivate: [AuthGuard]},

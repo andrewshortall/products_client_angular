@@ -1,9 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import { getAllProducts } from '@libs/products/src/lib/state/products.selectors';
-import { Store } from '@libs/midgard-angular/src/lib/modules/store/store';
-import { setTopBarOptions } from '@libs/midgard-angular/src/lib/state/top-bar/top-bar.actions';
+import { getAllProducts } from '@clients/products/src/lib/state/products.selectors';
+import { Store } from '@src/midgard/modules/store/store';
+import { setTopBarOptions } from '@src/midgard/state/top-bar/top-bar.actions';
 import {CardItemOptions} from 'freyja-ui';
-import {CrudComponent} from '../../../midgard-angular/src/lib/modules/crud/crud.component';
+import {CrudComponent} from '@src/midgard/modules/crud/crud.component';
 
 @Component({
   selector: 'lib-products',
