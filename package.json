@@ -2,7 +2,6 @@
   "name": "products",
   "version": "0.0.1",
   "scripts": {
-    "compodoc": "./node_modules/.bin/compodoc -p ./tsconfig.lib.json"
   },
   "peerDependencies": {
     "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
@@ -15,6 +14,5 @@
     "rxjs": "6.3.2"
   },
   "devDependencies": {
-    "@compodoc/compodoc": "^1.1.7"
   }
 }
