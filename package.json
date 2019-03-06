@@ -1,8 +1,7 @@
 {
   "name": "products",
   "version": "0.0.1",
-  "scripts": {
-  },
+  "scripts": {},
   "peerDependencies": {
     "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
     "@angular/core": "^6.0.0-rc.0 || ^6.0.0"
@@ -10,9 +9,8 @@
   "dependencies": {
     "freyja-ui": "0.0.34",
     "midgard-core": "0.0.16",
-    "redux-observable": "^1.0.0",
+    "redux-observable": "1.0.0",
     "rxjs": "6.3.2"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }

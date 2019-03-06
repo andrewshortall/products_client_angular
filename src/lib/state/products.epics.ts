@@ -1,6 +1,6 @@
 import { HttpService } from '@src/midgard/modules/http/http.service';
 import { ofType } from 'redux-observable';
-import { switchMap, catchError, map } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import {
   createProductCommit, createProductFail, deleteProductCommit, deleteProductFail,
@@ -28,7 +28,7 @@ const loadAllProductsEpic = action$ => {
     switchMap((action: any) => {
       return httpService.makeRequest('get', `${environment.API_URL}/products/products`, {}, true).pipe(
         // If successful, dispatch success action with result
-        map(res => loadProductsCommit(res.data)),
+        map((res) => loadProductsCommit(res.data)),
         // If request fails, dispatch failed action
         catchError((error) => of(loadProductsFail(error)))
       );
@@ -115,5 +115,5 @@ export const productsEpics = reduxObservable.combineEpics(
   loadOneProductEpic,
   updateProductEpic,
   deleteProductEpic,
-  createProductEpic,
+  createProductEpic
 );
