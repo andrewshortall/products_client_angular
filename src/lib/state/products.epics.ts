@@ -1,36 +1,32 @@
 import { HttpService } from '@src/midgard/modules/http/http.service';
-import { ofType } from 'redux-observable';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import {
   createProductCommit, createProductFail, deleteProductCommit, deleteProductFail,
   LOAD_ALL_PRODUCTS, loadOneProductFail, loadProductsCommit,
-  updateProductCommit, updateProductFail, loadProductsFail
-} from '@clients/products/src/lib/state/products.actions';
-import { environment } from '@env/environment';
-import {
-  CREATE_PRODUCT,
+  updateProductCommit, updateProductFail, loadProductsFail, CREATE_PRODUCT,
   DELETE_PRODUCT, LOAD_ONE_PRODUCT, loadOneProductCommit,
   UPDATE_PRODUCT
-} from '@clients/products/src/lib/state/products.actions';
+} from './products.actions';
+import { environment } from '@env/environment';
 import { reduxObservable } from '@src/midgard/modules/store';
 import { Action } from '@src/midgard/state/action.type';
 
 const httpService = new HttpService();
 
 /**
- * this is here to handle asynchronous actions and will be triggered when LOAD_DATA_PRODUCTS action is dispatched
+ * this is here to handle asynchronous actions and will be triggered when LOAD_ALL_PRODUCTS action is dispatched
  * @param {Observable} action$ - the current action
  */
 const loadAllProductsEpic = action$ => {
   return action$.pipe(
-    ofType(LOAD_ALL_PRODUCTS),
-    switchMap((action: any) => {
+    reduxObservable.ofType(LOAD_ALL_PRODUCTS),
+    switchMap(() => {
       return httpService.makeRequest('get', `${environment.API_URL}/products/products`, {}, true).pipe(
         // If successful, dispatch success action with result
-        map((res) => loadProductsCommit(res.data)),
+        map(res => loadProductsCommit(res.data)),
         // If request fails, dispatch failed action
-        catchError((error) => of(loadProductsFail(error)))
+        catchError(error => of(loadProductsFail(error)))
       );
     })
   );
