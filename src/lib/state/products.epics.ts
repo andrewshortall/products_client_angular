@@ -20,7 +20,6 @@ export class ProductsEpics {
    * @param {Observable} action$ - the current action
    */
   loadAllProductsEpic = action$ => {
-    console.log(this.httpService.makeRequest('get', `${environment.API_URL}/products/products`, {}, true));
     return action$.pipe(
       reduxObservable.ofType(LOAD_ALL_PRODUCTS),
       switchMap(() => {
@@ -49,7 +48,7 @@ export class ProductsEpics {
         );
       })
     );
-  };
+  }
 
   /**
    * this is here to handle asynchronous actions and will be triggered when CREATE_PRODUCT action is dispatched
