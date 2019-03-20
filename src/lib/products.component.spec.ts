@@ -2,7 +2,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductsComponent } from './products.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { MidgardStoreTestingModule } from '../../../../midgard/modules/store/store-testing.module';
+import { MidgardStoreModule } from '../../../../midgard/modules/store/store.module';
+import { StoreMock } from '../../../../midgard/modules/store/store-mock';
+import { Store } from '../../../../midgard/modules/store/store';
 
 describe('ProductsComponent', () => {
   let component: ProductsComponent;
@@ -10,8 +12,11 @@ describe('ProductsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [MidgardStoreTestingModule],
+      imports: [MidgardStoreModule.forRoot()],
       declarations: [ ProductsComponent ],
+      providers: [
+        {provide: Store, useClass: StoreMock}
+      ],
       schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
