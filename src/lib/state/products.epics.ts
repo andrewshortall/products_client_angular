@@ -39,8 +39,8 @@ export class ProductsEpics {
   loadOneProductEpic = action$ => {
     return action$.pipe(
       reduxObservable.ofType(LOAD_ONE_PRODUCT),
-      switchMap((action: any) => {
-        return this.httpService.makeRequest('get', `${environment.API_URL}/products/products/${action.uuid}/`, {}, true).pipe(
+      switchMap((action: Action) => {
+        return this.httpService.makeRequest('get', `${environment.API_URL}/products/products/${action.products_uuid}/`, {}, true).pipe(
           // If successful, dispatch success action with result
           map((res: Action) => loadOneProductCommit(res.data)),
           // If request fails, dispatch failed action
@@ -57,7 +57,7 @@ export class ProductsEpics {
   createProductEpic = action$ => {
     return action$.pipe(
       reduxObservable.ofType(CREATE_PRODUCT),
-      switchMap((action: any) => {
+      switchMap((action: Action) => {
         return this.httpService.makeRequest('post', `${environment.API_URL}/products/products/`, action.data, true).pipe(
           // If successful, dispatch success action with result
           map((res: Action) => createProductCommit(res.data, action.index)),
@@ -75,10 +75,10 @@ export class ProductsEpics {
   updateProductEpic = action$ => {
     return action$.pipe(
       reduxObservable.ofType(UPDATE_PRODUCT),
-      switchMap((action: any) => {
+      switchMap((action: Action) => {
         const payload = {...action.data};
         delete payload['id']; // remove id from payload because we already send it in the url
-        return this.httpService.makeRequest('put', `${environment.API_URL}/products/products/${action.data.uuid}/`, payload, true).pipe(
+        return this.httpService.makeRequest('put', `${environment.API_URL}/products/products/${action.data.id}/`, payload, true).pipe(
           // If successful, dispatch success action with result
           map((res: Action) => updateProductCommit(res.data, action.nested)),
           // If request fails, dispatch failed action
@@ -95,8 +95,8 @@ export class ProductsEpics {
   deleteProductEpic = action$ => {
     return action$.pipe(
       reduxObservable.ofType(DELETE_PRODUCT),
-      switchMap((action: any) => {
-        return this.httpService.makeRequest('delete', `${environment.API_URL}/products/products/${action.data.uuid}/`, {}, true).pipe(
+      switchMap((action: Action) => {
+        return this.httpService.makeRequest('delete', `${environment.API_URL}/products/products/${action.data.id}/`, {}, true).pipe(
           // If successful, dispatch success action with result
           map(res => deleteProductCommit(action.data, action.nested)),
           // If request fails, dispatch failed action
