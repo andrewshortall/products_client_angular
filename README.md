@@ -40,4 +40,4 @@ Run `npm run compodoc` to generate [Compodoc](https://compodoc.github.io/compodo
 
 Copyright &#169;2019 Humanitec GmbH.
 
-This code is released under the [Humanitec Affero GPL](LICENSE).
+This code is released under the Humanitec Affero GPL. See the **LICENSE** file for details.
