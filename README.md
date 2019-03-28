@@ -28,10 +28,9 @@ This is the frontend client for the [Products module](https://docs.walhall.io/ma
 
 This client connects to the following services:
 
--  [Link to documentation for service that the client uses](https://example.com)
--  [Link to documentation for service that the client uses](https://example.com)
+-  [Products service (Django)](https://docs.walhall.io/marketplace/products-module/products-service)
 
-Document the ways in which this client connects to the service. Methods used, data models used, endpoints used, etc.
+<!-- Document the ways in which this client connects to the service. Methods used, data models used, endpoints used, etc. -->
 
 ## API documentation (Compodoc)
 
