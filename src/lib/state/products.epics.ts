@@ -40,7 +40,7 @@ export class ProductsEpics {
     return action$.pipe(
       reduxObservable.ofType(LOAD_ONE_PRODUCT),
       switchMap((action: Action) => {
-        return this.httpService.makeRequest('get', `${environment.API_URL}/products/products/${action.id}/`, {}, true).pipe(
+        return this.httpService.makeRequest('get', `${environment.API_URL}/products/products/${action.uuid}/`, {}, true).pipe(
           // If successful, dispatch success action with result
           map((res: Action) => loadOneProductCommit(res.data)),
           // If request fails, dispatch failed action
@@ -78,7 +78,7 @@ export class ProductsEpics {
       switchMap((action: Action) => {
         const payload = {...action.data};
         delete payload['id']; // remove id from payload because we already send it in the url
-        return this.httpService.makeRequest('put', `${environment.API_URL}/products/products/${action.data.id}/`, payload, true).pipe(
+        return this.httpService.makeRequest('put', `${environment.API_URL}/products/products/${action.data.uuid}/`, payload, true).pipe(
           // If successful, dispatch success action with result
           map((res: Action) => updateProductCommit(res.data, action.nested)),
           // If request fails, dispatch failed action
@@ -96,7 +96,7 @@ export class ProductsEpics {
     return action$.pipe(
       reduxObservable.ofType(DELETE_PRODUCT),
       switchMap((action: Action) => {
-        return this.httpService.makeRequest('delete', `${environment.API_URL}/products/products/${action.data.id}/`, {}, true).pipe(
+        return this.httpService.makeRequest('delete', `${environment.API_URL}/products/products/${action.data.uuid}/`, {}, true).pipe(
           // If successful, dispatch success action with result
           map(res => deleteProductCommit(action.data, action.nested)),
           // If request fails, dispatch failed action
