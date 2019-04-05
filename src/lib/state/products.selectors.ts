@@ -6,7 +6,10 @@ export const getAllProducts = reselect.createSelector(
   getProducts,
   (products) => {
     if (products) {
-      return products.data.results;
+      products.data.results.map(productsData => {
+        return productsData;
+      });
+      return products;
     }
   }
 );
@@ -17,6 +20,6 @@ export const getAllProducts = reselect.createSelector(
  * @returns {MemoizedSelector<any, any>}
  */
 export const selectProduct = (id: number) => reselect.createSelector(getProducts, (products) => {
-  return products.data.results.find( product => product.id.toString() === id.toString());
+  return products.data.resultsfind( product => product.id.toString() === id.toString());
 });
 
