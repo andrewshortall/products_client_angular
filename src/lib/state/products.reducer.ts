@@ -5,7 +5,7 @@ import {
 import { addAll, deleteOne, upsertOne } from '@src/midgard/modules/store/reducer.utils';
 
 const initialState: any = {
-  data: [],
+  data: null,
   loaded: false,
   created: false,
   updated: false,

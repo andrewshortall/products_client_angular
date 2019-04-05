@@ -6,9 +6,6 @@ export const getAllProducts = reselect.createSelector(
   getProducts,
   (products) => {
     if (products) {
-      products.data.results.map(productsData => {
-        return productsData;
-      });
       return products;
     }
   }
@@ -16,10 +13,10 @@ export const getAllProducts = reselect.createSelector(
 
 /**
  * selector that selects one product from the products reducer
- * @param {number} id - id of the document
+ * @param {number} uuid - unique id of the document
  * @returns {MemoizedSelector<any, any>}
  */
-export const selectProduct = (id: number) => reselect.createSelector(getProducts, (products) => {
-  return products.data.resultsfind( product => product.id.toString() === id.toString());
+export const selectProduct = (uuid: number) => reselect.createSelector(getProducts, (products) => {
+  return products.data.results.find( product => product.uuid.toString() === uuid);
 });
 
