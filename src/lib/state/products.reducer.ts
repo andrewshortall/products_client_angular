@@ -17,13 +17,13 @@ export function productsReducer(state = initialState, action) {
     case LOAD_ALL_PRODUCTS_COMMIT:
       return addAll(state, action);
     case LOAD_ONE_PRODUCT_COMMIT:
-      return upsertOne(state, action, 'uuid');
+      return upsertOne(state, action, 'uuid', 'results');
     case CREATE_PRODUCT_COMMIT:
-      return upsertOne(state, action, 'uuid');
+      return upsertOne(state, action, 'uuid', 'results');
     case UPDATE_PRODUCT_COMMIT:
-      return upsertOne(state, action, 'uuid');
+      return upsertOne(state, action, 'uuid', 'results');
     case DELETE_PRODUCT_COMMIT:
-      return deleteOne(state, action, 'uuid');
+      return deleteOne(state, action, 'uuid', 'results');
     default:
       return state;
   }
