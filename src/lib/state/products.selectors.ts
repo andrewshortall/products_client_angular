@@ -2,11 +2,26 @@ import { reselect } from '@src/midgard/modules/store';
 
 const getProducts = state => state.productsReducer;
 
+/**
+ * selector to get list of products
+ */
 export const getAllProducts = reselect.createSelector(
   getProducts,
   (products) => {
     if (products) {
-      return products;
+      return products.data.results;
+    }
+  }
+);
+
+/**
+ * selector to check if the data is loaded
+ */
+export const getProductsLoaded = reselect.createSelector(
+  getProducts,
+  (products) => {
+    if (products) {
+      return products.loaded;
     }
   }
 );

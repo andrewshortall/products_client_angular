@@ -4,6 +4,7 @@ import { Store } from '@src/midgard/modules/store/store';
 import { setTopBarOptions } from '@src/midgard/state/top-bar/top-bar.actions';
 import {CardItemOptions} from 'freyja-ui';
 import {CrudComponent} from '@src/midgard/modules/crud/crud.component';
+import { getProductsLoaded } from './state/products.selectors';
 
 @Component({
   selector: 'lib-products',
@@ -29,8 +30,8 @@ export class ProductsComponent implements OnInit {
     }
   ];
   public graphQlQuery;
-  public selector = getAllProducts;
-
+  public dataSelector = getAllProducts;
+  public loadedSelector = getProductsLoaded;
 
   constructor(private store: Store<any>) {
   }

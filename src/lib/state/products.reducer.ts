@@ -3,8 +3,19 @@ import {
   UPDATE_PRODUCT_COMMIT
 } from '@clients/products/src/lib/state/products.actions';
 import { addAll, deleteOne, upsertOne } from '@src/midgard/modules/store/reducer.utils';
+import { Product } from './products.model';
 
-const initialState: any = {
+export interface ProductsState {
+  data: {
+    results?: Product[];
+    count?: number
+  };
+  loaded: false;
+  created: false;
+  updated: false;
+  deleted: false;
+}
+const initialState: ProductsState = {
   data: {},
   loaded: false,
   created: false,

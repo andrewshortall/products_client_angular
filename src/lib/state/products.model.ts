@@ -1,1 +1,4 @@
-export interface ProductsState {}
+export interface Product {
+  uuid: string;
+  name: string;
+}
