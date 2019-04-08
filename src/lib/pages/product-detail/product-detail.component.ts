@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { getAllProducts } from '@clients/products/src/lib/state/products.selectors';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'lib-product-detail',
@@ -10,11 +11,13 @@ export class ProductDetailComponent implements OnInit {
   public formFields;
   public graphQlQuery;
   public selector;
-
+  public itemId;
   constructor(
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
+    this.itemId = this.activatedRoute.snapshot.paramMap.get('id');
     this.selector = getAllProducts;
     this.defineFormFields();
   }
