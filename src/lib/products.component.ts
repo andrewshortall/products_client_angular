@@ -185,11 +185,12 @@ export class ProductsComponent implements OnInit {
   /**
    * function that is triggered when the card item is edited
    * @param {string} editedField - an object that contains the edited property and the edited value of the field object and the current card item data
+   * @param {string} idProperty - The id property
    */
-  handleCardItemEdited(editedField: {value: any, property, itemData: any}) {
+  handleCardItemEdited(editedField: {value: any, property, itemData: any}, idProperty) {
     const {value, property, itemData} = editedField;
     const newItem: any = {};
-    newItem.id = itemData.id;
+    newItem[idProperty] = itemData[idProperty];
     newItem.name = itemData.name;
     if (value && value !== '') {
       newItem[property] = value;
