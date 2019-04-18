@@ -109,10 +109,6 @@ export class ProductsComponent implements OnInit {
         {
           label: 'Delete',
           value: 'delete'
-        },
-        {
-          label: 'Share',
-          value: 'share'
         }
       ],
       belowMenuOtherActions: [
@@ -123,10 +119,6 @@ export class ProductsComponent implements OnInit {
         {
           label: 'Delete',
           value: 'delete'
-        },
-        {
-          label: 'Share',
-          value: 'share'
         }
       ]
     };
