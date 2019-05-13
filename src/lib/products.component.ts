@@ -130,14 +130,14 @@ export class ProductsComponent implements OnInit {
   private defineTableOptions() {
     this.tableOptions = {
       columns: [
-        {name: 'Name', prop: 'name', flex: 2, sortable: true, filtering: true},
-        {name: 'Manu.', prop: 'make', flex: 2, sortable: true, filtering: true},
-        {name: 'Model', prop: 'model', flex: 2, sortable: true, filtering: false},
-        {name: 'Style', prop: 'style', flex: 2, sortable: true, filtering: false},
-        {name: 'Description', prop: 'description', flex: 2, sortable: true, filtering: false},
-        {name: 'Ref.', prop: 'reference_id', flex: 2, sortable: true, filtering: false},
-        {name: 'Date Created', prop: 'create_date', index: 1, flex: 1, cellTemplate: 'date', sortable: true},
-        {name: '', cellTemplate: 'actions', actions: ['delete']},
+        {name: 'Name', cellTemplate: 'picture-edit', prop: 'name', flex: 2, sortable: true, filtering: true},
+        {name: 'Manu.', cellTemplate: 'edit', prop: 'make', flex: 2, sortable: true, filtering: true},
+        {name: 'Model', cellTemplate: 'edit', prop: 'model', flex: 2, sortable: true, filtering: false},
+        // {name: 'Style', cellTemplate: 'edit', prop: 'style', flex: 2, sortable: true, filtering: false},
+        // {name: 'Description', cellTemplate: 'edit', prop: 'description', flex: 2, sortable: true, filtering: false},
+        {name: 'Ref.', cellTemplate: 'edit', prop: 'reference_id', flex: 2, sortable: true, filtering: false},
+        {name: 'Date Created', prop: 'create_date', index: 1, flex: 2, cellTemplate: 'date', sortable: true},
+        {name: '', cellTemplate: 'actions', actions: this.cardItemOptions.otherActions},
       ]
     };
   }
@@ -146,7 +146,7 @@ export class ProductsComponent implements OnInit {
    * function that listens if an action from the card-item component has been triggered
    * @param {string} actionData - an object that contains the type of the action that has been triggered and the selected item
    */
-  handleCardItemActionClicked(actionData: {actionType: string, item: any}) {
+  handleItemActionClicked(actionData: {actionType: string, item: any}) {
     let itemIndex;
     switch (actionData.actionType) {
       case 'new':
@@ -175,11 +175,11 @@ export class ProductsComponent implements OnInit {
   }
 
   /**
-   * function that is triggered when the card item is edited
+   * function that is triggered when an item is edited inline
    * @param {string} editedField - an object that contains the edited property and the edited value of the field object and the current card item data
    * @param {string} idProperty - The id property
    */
-  handleCardItemEdited(editedField: {value: any, property, itemData: any}, idProperty) {
+  handleItemEdited(editedField: {value: any, property, itemData: any}, idProperty) {
     const {value, property, itemData} = editedField;
     const newItem: any = {};
     newItem[idProperty] = itemData[idProperty];
