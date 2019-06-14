@@ -6,6 +6,10 @@ title = "Products client (Angular)"
 
 This is the frontend client for the [Products module](https://docs.walhall.io/marketplace/products-module), written in Angular.
 
+## Overview
+
+This client is implementing the midgard [Crud module](https://github.com/Humanitec/midgard-angular#crud-module) to execute CRUD operation on [Products service (Django)](https://docs.walhall.io/marketplace/products-module/products-service).
+
 ## Develop this client
 
 -  To **build** the project: `ng build`  
