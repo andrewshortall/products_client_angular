@@ -8,19 +8,15 @@ This is the frontend client for the [Products module](https://docs.walhall.io/ma
 
 ## Develop this client
 
--  To **build** the project: `ng build {name-of-module}`  
+-  To **build** the project: `ng build`  
   -  The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
--  To **run tests** using [Karma](https://karma-runner.github.io/0.13/index.html): `ng test {name-of-module}`
--  To **run end-to-end tests** using [Protractor](https://www.protractortest.org/#/): `ng e2e {name-of-module}`
+-  To **run tests** using [Karma](https://karma-runner.github.io/0.13/index.html): `ng test`
+-  To **run end-to-end tests** using [Protractor](https://www.protractortest.org/#/): `ng e2e`
 
 ## File structure
 
--  `/components`: Components that do not have roots assigned to them.
--  `/helpers`: The client's helper classes.
 -  `/pages`: Components that have roots assigned to them.
--  `/services`: Classes that provide data.
 -  `/state`: State-related files and data models.
--  `/styles`: Contains styles specific to the client.
 -  `routing.module.ts`: Where the client's routes are defined.
 -  `ngModule`: Where components, services, pipes, etc. are defined.
 
